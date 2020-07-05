@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 
@@ -20,6 +21,7 @@ import java.io.File;
 
 public class SplashActivity extends AppCompatActivity {
     private FullScreenVideoView mVideoView;
+    private TextView count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         mVideoView = findViewById(R.id.play);
+        count = findViewById(R.id.tv_timer);
         mVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -40,6 +43,19 @@ public class SplashActivity extends AppCompatActivity {
                 mp.start();
             }
         });
+        CustomCountDownTimer timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
+            @Override
+            public void onTicker(int time) {
+                count.setText(time + "s");
+            }
+
+            @Override
+            public void onFinish() {
+                count.setText("跳过");
+            }
+        });
+        timer.start();
+
     }
 
 
