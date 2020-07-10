@@ -8,10 +8,9 @@ import android.widget.TextView;
 
 
 import com.example.todayinformation.base.BaseActivity;
-import com.example.todayinformation.MainActivity;
+import com.example.todayinformation.main.MainActivity;
 import com.example.todayinformation.R;
 import com.example.todayinformation.base.ViewInject;
-import com.example.todayinformation.mvp.ISplashActivityContract;
 
 import java.io.File;
 
@@ -68,12 +67,6 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
         });
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        timerPresenter.onDestroy();
-//
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

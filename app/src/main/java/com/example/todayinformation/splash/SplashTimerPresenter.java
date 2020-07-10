@@ -2,7 +2,6 @@ package com.example.todayinformation.splash;
 
 import android.util.Log;
 
-import com.example.todayinformation.mvp.ISplashActivityContract;
 import com.example.todayinformation.mvp.base.BaseMvpPresenter;
 
 /**
