@@ -1,4 +1,4 @@
-package com.example.todayinformation.mvp.view;
+package com.example.mvp.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.todayinformation.mvp.IMvpView;
-import com.example.todayinformation.mvp.MvpController;
+import com.example.mvp.mvp.IMvpView;
+import com.example.mvp.mvp.MvpController;
 
 /**
  * on  2020/7/8}

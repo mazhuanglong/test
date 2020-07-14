@@ -2,7 +2,7 @@ package com.example.todayinformation.splash;
 
 import android.util.Log;
 
-import com.example.todayinformation.mvp.base.BaseMvpPresenter;
+import com.example.mvp.mvp.base.BaseMvpPresenter;
 
 /**
  * on  2020/7/7}

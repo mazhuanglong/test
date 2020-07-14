@@ -7,7 +7,7 @@ import com.example.todayinformation.main.beijing.BeiJingFragment;
 import com.example.todayinformation.main.hangzhou.HangZhouFragment;
 import com.example.todayinformation.main.shanghai.ShangHaiFragment;
 import com.example.todayinformation.main.shenzhen.ShenZhenFragment;
-import com.example.todayinformation.mvp.base.BaseMvpPresenter;
+import com.example.mvp.mvp.base.BaseMvpPresenter;
 
 /**
  * on  2020/7/9}
@@ -66,6 +66,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
     public int getCurrentCheckedIndex() {
         return mCurrentFragmentIndex;
     }
+
 
     @Override
     public int getTopPosition() {

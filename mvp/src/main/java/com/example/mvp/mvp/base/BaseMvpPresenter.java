@@ -1,10 +1,10 @@
-package com.example.todayinformation.mvp.base;
+package com.example.mvp.mvp.base;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.todayinformation.mvp.IMvpView;
-import com.example.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
+import com.example.mvp.mvp.IMvpView;
+import com.example.mvp.mvp.presenter.LifeCircleMvpPresenter;
 
 /**
  * on  2020/7/8} p层中间类

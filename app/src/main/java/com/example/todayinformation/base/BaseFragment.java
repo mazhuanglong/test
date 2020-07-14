@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.example.todayinformation.mvp.view.LifeCircleMvpActivity;
-import com.example.todayinformation.mvp.view.LifeCircleMvpFragment;
+import com.example.mvp.mvp.view.LifeCircleMvpActivity;
+import com.example.mvp.mvp.view.LifeCircleMvpFragment;
 import butterknife.ButterKnife;
 
 /**
@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 
-    private Context mContext;
+    public Context mContext;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -47,7 +47,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
         return mView;
     }
 
-    private View initFragmentView(LayoutInflater inflater,int mainlayoutid) {
+    public View initFragmentView(LayoutInflater inflater,int mainlayoutid) {
         return inflater.inflate(mainlayoutid,null);
     }
 

@@ -1,0 +1,113 @@
+package com.example.todayinformation.main.shanghai.adapter;
+
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.todayinformation.R;
+import com.example.todayinformation.main.shanghai.dto.ShanghaiBean;
+import com.example.todayinformation.main.shanghai.view.ShanghaiDetailActivity;
+
+import java.util.ArrayList;
+
+/**
+ * on  2020/7/12}
+ */
+public class ShanghaiAdapter extends RecyclerView.Adapter {
+
+    private final ArrayList<ShanghaiBean> mData;
+    private final Activity mContext;
+    private final boolean mIsHor;
+    private final RecyclerView.RecycledViewPool recycledViewPool;
+
+    public ShanghaiAdapter(Activity context, ArrayList<ShanghaiBean> data, boolean isHor) {
+    recycledViewPool=new RecyclerView.RecycledViewPool();
+        mContext = context;
+        mData = data;
+        mIsHor = isHor;
+    }
+
+    @NonNull
+    @Override
+    //创建View 然后进行缓存
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == ShanghaiBean.IShanghaiItemType.VERTICAL) {
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment, parent, false);
+            ShanghaiViewHolder viewHolder = new ShanghaiViewHolder(inflate);
+            return viewHolder;
+        } else if (viewType == ShanghaiBean.IShanghaiItemType.HORIZANTAL) {
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment_rv, null);
+            ShanghaiViewHolderRv viewHolder = new ShanghaiViewHolderRv(inflate);
+            return viewHolder;
+        }
+        return null;
+    }
+
+    //绑定数据
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ShanghaiBean shanghaiBean = mData.get(position);
+        if (holder instanceof ShanghaiViewHolder) {
+            ((ShanghaiViewHolder) holder).mTv.setText(shanghaiBean.getmDec());
+            ((ShanghaiViewHolder) holder).mIv.setVisibility(shanghaiBean.isShowImg() ? View.VISIBLE : View.GONE);
+            ((ShanghaiViewHolder) holder).itemView.setTag(position);
+
+        } else if (holder instanceof ShanghaiViewHolderRv) {
+
+            ((ShanghaiViewHolderRv) holder).mRecycleview.setAdapter(new ShanghaiAdapter(mContext, shanghaiBean.getData(), true));
+        }
+
+    }
+
+
+    //条目数量
+    @Override
+    public int getItemCount() {
+        return mData.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return mData.get(position).getmItemType();
+    }
+
+    //缓存View 内存友好设计
+    public class ShanghaiViewHolder extends RecyclerView.ViewHolder {
+        private ImageView mIv;
+        public TextView mTv;
+
+        public ShanghaiViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mTv = itemView.findViewById(R.id.item_shanghai_tv);
+            mIv = itemView.findViewById(R.id.item_shanghai_iv);
+            this.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShanghaiDetailActivity.start_5_0(mContext,mIv);
+                }
+            });
+        }
+    }
+
+    public class ShanghaiViewHolderRv extends RecyclerView.ViewHolder {
+        public RecyclerView mRecycleview;
+
+        public ShanghaiViewHolderRv(@NonNull View itemView) {
+            super(itemView);
+            mRecycleview = itemView.findViewById(R.id.item_shanghai_rv);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            linearLayoutManager.setRecycleChildrenOnDetach(true);
+            mRecycleview.setLayoutManager(linearLayoutManager);
+            mRecycleview.setRecycledViewPool(recycledViewPool);
+        }
+    }
+}
